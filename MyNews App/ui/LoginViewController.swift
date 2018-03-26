@@ -43,10 +43,9 @@ class LoginViewController : BaseviewController{
             showAlert("Error",msg: "Password Length must be minimum 6",isShowCancel: false)
         }
         else{
-            loginNetworkCall(email:email,password:pass)
-           //  doLogin(email:email,password:pass)
-            makeNsUrlConnectionAPIcall()
-            
+        //    loginNetworkCall(email:email,password:pass)
+         //    doLogin(email:email,password:pass)
+            makeGetApiCall()
         }
         
     }
@@ -98,7 +97,7 @@ do {
     
         showProgressDialog("Loading...")
         
-        guard let gitUrl = URL(string: UrlConstants.API_LOGIN) else { return }
+        guard let gitUrl = URL(string: "http://www.veergurudev.com/App/API/login.php?&pass=123456&phone=8249432914") else { return }
         
          let parameters: Parameters = ["phone": email,"pass":password]
         var request = URLRequest(url: gitUrl)
@@ -107,11 +106,7 @@ do {
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
         request.httpBody = httpBody
         
-        
-        
-        
-        
-        URLSession.shared.dataTask(with: request as URLRequest) { (data, response
+        URLSession.shared.dataTask(with: gitUrl ) { (data, response
             , error) in
             
             guard let data = data else {
@@ -130,26 +125,11 @@ do {
             
             DispatchQueue.main.async {
                 self.hideProgress()
-        
             }
-            
             }.resume()
-        
-        
     }
     
-    func makeLoginWithDictionary(phone:String,password:String){
-        
-        
-        let url = URL(string: UrlConstants.API_LOGIN+"phone=\(phone)&pass=\(password)")
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            
-//            let someDictionaryFromJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
-     //       let json4Swift_Base = Json4Swift_Base(someDictionaryFromJSON)
-            
-        }
-        task.resume()
-    }
+    
     
     func makeNsUrlConnectionAPIcall(){
         let url = URL(string: "http://jsonplaceholder.typicode.com/users/2")
@@ -171,9 +151,65 @@ do {
         }
     }
     
-    func makeAPiCalUsingDictionArymapping(){
-        
-        
+    func makeGetApiCall() {
+         guard let gitUrl = URL(string: "http://www.veergurudev.com/App/API/login.php?&pass=123456&phone=8249432914") else { return }
+        let session = URLSession.shared
+        session.dataTask(with: gitUrl){ (data,response,error) in
+            if let response = response{
+                print(response)
+            }
+            if let data = data{
+                print(data)
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                    
+                    
+                    let decoder = JSONDecoder()
+                    let result = try? decoder.decode(LoginResponse.self, from: data) //Use Result.self here
+                    print(result)
+                    
+                    let jsonDecoder = JSONDecoder()
+                
+                    
+                    let employee2 = try jsonDecoder.decode(LoginResponse.self, from: data)
+                
+                    
+                    if let json = try? JSONDecoder().decode(LoginResponse.self, from: data){
+
+                        var loginres = json
+                        
+                        print(loginres.data?.count)
+                        
+                    }
+                    
+                }
+                catch{
+                    print(error)
+                }
+            }
+        }.resume()
     }
+    
+/*
+     {
+     data =     (
+     {
+     message = "Login successfully";
+     name = Maharashtra;
+     pic = "";
+     state = 17;
+     status = 1;
+     "total_points" = 0;
+     uid = 1442;
+     username = spm;
+     }
+     );
+     }
+     nil
+     typeMismatch(Swift.Int, Swift.DecodingError.Context(codingPath: [MyNews_App.LoginResponse.CodingKeys.data, Foundation.(_JSONKey in _12768CA107A31EF2DCE034FD75B541C9)(stringValue: "Index 0", intValue: Optional(0)), MyNews_App.Data.CodingKeys.status], debugDescription: "Expected to decode Int but found a string/data instead.", underlyingError: nil))
+
+ */
+ 
     
 }

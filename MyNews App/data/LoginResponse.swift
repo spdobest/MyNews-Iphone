@@ -1,6 +1,6 @@
  
 import Foundation
-struct LoginResponse : Decodable {
+struct LoginResponse : Codable {
 	let data : [Data]?
 
 	enum CodingKeys: String, CodingKey {

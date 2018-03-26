@@ -35,8 +35,11 @@
 		356636462067017B004C9480 /* LoginBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356636442067017B004C9480 /* LoginBase.swift */; };
 		356636472067017B004C9480 /* LoginChildData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356636452067017B004C9480 /* LoginChildData.swift */; };
 		356E26212067FF7C00DD17E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E26202067FF7C00DD17E6 /* HomeViewController.swift */; };
+		35D41F7120689C8A00D5B9A8 /* DetailsArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D41F7020689C8A00D5B9A8 /* DetailsArticleVC.swift */; };
 		35F7B382206894310094234A /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7B380206894300094234A /* NewsResponse.swift */; };
-		35F7B383206894310094234A /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7B381206894300094234A /* NewsData.swift */; };
+		35F7B386206899090094234A /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7B385206899090094234A /* Blog.swift */; };
+		35F7B39E20689A170094234A /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7B39D20689A170094234A /* ArticleViewController.swift */; };
+		35F7B3A020689A2A0094234A /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7B39F20689A2A0094234A /* ArticleTableViewCell.swift */; };
 		B25370CFF134BF29337F3C3B /* Pods_MyNews_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F1B8B22D31691E003C2EF0 /* Pods_MyNews_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,8 +75,11 @@
 		356636442067017B004C9480 /* LoginBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginBase.swift; sourceTree = "<group>"; };
 		356636452067017B004C9480 /* LoginChildData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginChildData.swift; sourceTree = "<group>"; };
 		356E26202067FF7C00DD17E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		35D41F7020689C8A00D5B9A8 /* DetailsArticleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsArticleVC.swift; sourceTree = "<group>"; };
 		35F7B380206894300094234A /* NewsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
-		35F7B381206894300094234A /* NewsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
+		35F7B385206899090094234A /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
+		35F7B39D20689A170094234A /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		35F7B39F20689A2A0094234A /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		8ADC661AB183E5BC65440FCC /* Pods-MyNews App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyNews App.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyNews App/Pods-MyNews App.release.xcconfig"; sourceTree = "<group>"; };
 		94F1B8B22D31691E003C2EF0 /* Pods_MyNews_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyNews_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -179,6 +185,7 @@
 		356636312066DE10004C9480 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				35F7B384206898A00094234A /* article */,
 				35F7B37F206894260094234A /* news */,
 				35663643206700DD004C9480 /* login */,
 				3566363A2066FCEA004C9480 /* person */,
@@ -212,6 +219,9 @@
 		356E261F2067FF6700DD17E6 /* home */ = {
 			isa = PBXGroup;
 			children = (
+				35F7B39F20689A2A0094234A /* ArticleTableViewCell.swift */,
+				35F7B39D20689A170094234A /* ArticleViewController.swift */,
+				35D41F7020689C8A00D5B9A8 /* DetailsArticleVC.swift */,
 				356E26202067FF7C00DD17E6 /* HomeViewController.swift */,
 			);
 			path = home;
@@ -220,10 +230,17 @@
 		35F7B37F206894260094234A /* news */ = {
 			isa = PBXGroup;
 			children = (
-				35F7B381206894300094234A /* NewsData.swift */,
 				35F7B380206894300094234A /* NewsResponse.swift */,
 			);
 			path = news;
+			sourceTree = "<group>";
+		};
+		35F7B384206898A00094234A /* article */ = {
+			isa = PBXGroup;
+			children = (
+				35F7B385206899090094234A /* Blog.swift */,
+			);
+			path = article;
 			sourceTree = "<group>";
 		};
 		59F168F7B3B763A329B88B23 /* Frameworks */ = {
@@ -379,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35083C8A2065E92E00E0CD4E /* LoginViewController.swift in Sources */,
+				35F7B39E20689A170094234A /* ArticleViewController.swift in Sources */,
 				35083C8E2065F21900E0CD4E /* RegisterViewController.swift in Sources */,
 				35083C7A2065C41A00E0CD4E /* ObjectUtils.swift in Sources */,
 				356636332066DE4B004C9480 /* LoginModel.swift in Sources */,
@@ -387,11 +405,13 @@
 				356636362066E3BF004C9480 /* LoginResponse.swift in Sources */,
 				35083C722065683400E0CD4E /* BaseviewController.swift in Sources */,
 				35083C752065689D00E0CD4E /* UrlConstants.swift in Sources */,
+				35F7B3A020689A2A0094234A /* ArticleTableViewCell.swift in Sources */,
+				35F7B386206899090094234A /* Blog.swift in Sources */,
 				356636462067017B004C9480 /* LoginBase.swift in Sources */,
 				356636372066E3BF004C9480 /* Data.swift in Sources */,
 				3566363F2066FCF9004C9480 /* Address.swift in Sources */,
 				356636472067017B004C9480 /* LoginChildData.swift in Sources */,
-				35F7B383206894310094234A /* NewsData.swift in Sources */,
+				35D41F7120689C8A00D5B9A8 /* DetailsArticleVC.swift in Sources */,
 				35083C61206567EE00E0CD4E /* LandingViewController.swift in Sources */,
 				356636422066FCF9004C9480 /* Company.swift in Sources */,
 				35F7B382206894310094234A /* NewsResponse.swift in Sources */,

@@ -1,6 +1,6 @@
  
 import Foundation
-struct Data : Decodable {
+struct Data : Codable {
 	let status : Int?
 	let message : String?
 	let uid : Int?
