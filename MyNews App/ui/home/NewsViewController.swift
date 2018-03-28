@@ -118,14 +118,14 @@ class NewsViewController : BaseviewController,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell : NewsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "myCell") as? NewsTableViewCell
+        let cell : TableViewCell! = tableView.dequeueReusableCell(withIdentifier: "myCell") as? TableViewCell
     
         if(indexPath.row == articles.count-1){
             self.showProgressDialog("Loading...")
             getNews()
         }
         
-        cell.labelNewsTitle.text = self.newsList[indexPath.row].title
+        cell.labelTitle.text = self.newsList[indexPath.row].title
         cell.labelDesc.text = self.newsList[indexPath.row].description
         downloadImage(self.newsList[indexPath.row].newsimage!, inView: cell.imageViewNews)
         return cell
