@@ -20,6 +20,8 @@ class LoginViewController : BaseviewController{
     
     var apputil = AppUtils()
     
+    var loiginRes:LoginResponse? = nil
+    
     
     @IBAction func onLoginClick(_ sender: AnyObject) {
     
@@ -45,7 +47,8 @@ class LoginViewController : BaseviewController{
         else{
         //    loginNetworkCall(email:email,password:pass)
          //    doLogin(email:email,password:pass)
-            makeGetApiCall()
+         //   makeGetApiCall()
+            doLogin(email:email,password:pass)
         }
         
     }
@@ -83,9 +86,21 @@ do {
                     print("JSON: \(JSON)")
                      let loginresponse =  try JSONDecoder().decode(LoginResponse.self, from: response.data!)
                     print("JSON: \(loginresponse.data![0])")
-                  
+                    
+                    var loginData = loginresponse.data![0]
+                    
+                    PreferenceUtils.setUserID(userId: loginData.uid!)
+                    PreferenceUtils.setUserName(userName: loginData.username!)
+                    PreferenceUtils.setStateId(stateId: loginData.state!)
+                    PreferenceUtils.setState(state: loginData.name!)
+                    PreferenceUtils.setUserPic(state: loginData.pic!)
+                    
+                    if loginData.status == "1" {
+                       self.performSegue(withIdentifier: "loginToHome", sender: self)
+                    }
                     
                 }
+    
                 }
                 catch let error as NSError {
                     print(error.localizedDescription)
@@ -191,25 +206,17 @@ do {
         }.resume()
     }
     
-/*
-     {
-     data =     (
-     {
-     message = "Login successfully";
-     name = Maharashtra;
-     pic = "";
-     state = 17;
-     status = 1;
-     "total_points" = 0;
-     uid = 1442;
-     username = spm;
-     }
-     );
-     }
-     nil
-     typeMismatch(Swift.Int, Swift.DecodingError.Context(codingPath: [MyNews_App.LoginResponse.CodingKeys.data, Foundation.(_JSONKey in _12768CA107A31EF2DCE034FD75B541C9)(stringValue: "Index 0", intValue: Optional(0)), MyNews_App.Data.CodingKeys.status], debugDescription: "Expected to decode Int but found a string/data instead.", underlyingError: nil))
-
- */
- 
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "loginToHome"?:
+            let welcomeVc = segue.destination as! HomeViewController
+        // welcomeVc.myValue = "Sibaprasad"
+        case "asd"?:
+            print("adasdas")
+        default :
+            print("default")
+        }
+    }
+        
+        
 }

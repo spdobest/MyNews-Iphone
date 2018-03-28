@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ArticleTableViewCell: UITableViewCell {
+class NewsTableViewCell: UITableViewCell {
     
-    @IBOutlet var imageview: UIImageView! 
+    @IBOutlet var imageViewNews: UIImageView!
     
-    @IBOutlet var labelTitle: UILabel!
+    @IBOutlet var labelDesc: UILabel!
+    @IBOutlet var labelNewsTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

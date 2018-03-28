@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-class ArticleViewController : BaseviewController,UITableViewDataSource {
+import Alamofire
+class NewsViewController : BaseviewController,UITableViewDataSource {
     
     @IBOutlet var myTable: UITableView!
     
@@ -17,12 +18,13 @@ class ArticleViewController : BaseviewController,UITableViewDataSource {
     
     
      var articles:[Article] = [Article]()
+     var newsList:[NewsData] = [NewsData]()
     
     override func viewDidLoad() {
         //  labelMessage.text = myValue
       //  view.addSubview(myActivityIndicator)
         self.myTable.separatorStyle = UITableViewCellSeparatorStyle.none
-        parseBlog()
+        getNews()
         
     }
     override func didReceiveMemoryWarning() {
@@ -32,55 +34,77 @@ class ArticleViewController : BaseviewController,UITableViewDataSource {
         
     }
     
+    func getNews() {
+        
+        let parameters: Parameters = ["uid": PreferenceUtils.getUserID()]
+        
+        Alamofire.request( UrlConstants.API_NEWS,method: .get, parameters: parameters)
+            .responseJSON { response in
+                
+                print(response.request )  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                
+                do {
+                    if let JSON = response.result.value {
+                        print("JSON: \(JSON)")
+                        let newsResponse =  try JSONDecoder().decode(NewsResponse.self, from: response.data!)
+                        print("JSON: \(newsResponse.data![0])")
+                        
+                        for newsData in newsResponse.data!{
+                        self.newsList.append(newsData)
+                        }
+                                            DispatchQueue.main.async {
+                                                self.hideProgress()
+                                                self.myTable.reloadData()
+                                            }
+                        
+                    }
+                    
+                }
+                catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+        }
+    }
+
+    
     func parseBlog() {
         
-//        self.view.addSubview(progressHud)
-//        progressHud.show()
-        
         showProgressDialog("Loading...")
-        
+
         let urlContacts = "http://roadfiresoftware.com/feed/json"
         guard let gitUrl = URL(string: urlContacts) else { return }
-        
+
         let parameters = ["id": "12234353"]
         var request = URLRequest(url: gitUrl)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
         request.httpBody = httpBody
-        
-        
+
+
         URLSession.shared.dataTask(with: gitUrl) { (data, response
             , error) in
-            
+
             guard let data = data else {
                 print("Error: No data to decode")
                 return
             }
-            
+
             guard let blog = try? JSONDecoder().decode(Blog.self, from: data) else {
                 print("Error: Couldn't decode data into Blog")
                 return
             }
-            
-            
-            print("blog title: \(blog.title)")
-            print("blog home: \(blog.homepageURL)")
-            
-            print("articles:")
-         //   self.articles = blog.articles
+
             self.articles.append(contentsOf: blog.articles)
-            for article in blog.articles {
-                print("- \(article.title)")
-            }
-           //  self.myTable.reloadData()
+
             DispatchQueue.main.async {
                 self.hideProgress()
                 self.myTable.reloadData()
             }
-            
-           // self.myTable.reloadData()
-            
             }.resume()
     }
     
@@ -88,22 +112,22 @@ class ArticleViewController : BaseviewController,UITableViewDataSource {
      ALL TABLE VIEW RELATED METHODS`
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.articles.count
+        return self.newsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell : ArticleTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "myCell") as? ArticleTableViewCell
+        let cell : NewsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "myCell") as? NewsTableViewCell
     
         if(indexPath.row == articles.count-1){
             self.showProgressDialog("Loading...")
-            parseBlog()
+            getNews()
         }
         
-        cell.labelTitle.text = self.articles[indexPath.row].title
-      //  cell.imageview.image = imageArray[indexPath.row%9] //self.articles[indexPath.row].id
-        
+        cell.labelNewsTitle.text = self.newsList[indexPath.row].title
+        cell.labelDesc.text = self.newsList[indexPath.row].description
+        downloadImage(self.newsList[indexPath.row].newsimage!, inView: cell.imageViewNews)
         return cell
     }
     
@@ -120,11 +144,41 @@ class ArticleViewController : BaseviewController,UITableViewDataSource {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
-} 
+}
 
-extension ArticleViewController : UITableViewDelegate {
+
+func downloadImage(_ uri : String, inView: UIImageView){
+    
+    let url = URL(string: uri)
+    
+    let task = URLSession.shared.dataTask(with: url!) {responseData,response,error in
+        if error == nil{
+            if let data = responseData {
+                
+                DispatchQueue.main.async {
+                    inView.image = UIImage(data: data)
+                }
+                
+            }else {
+                print("no data")
+            }
+        }else{
+            print(error)
+        }
+    }
+    
+    task.resume()
+    
+}
+
+
+
+extension NewsViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    
+    
 }
 

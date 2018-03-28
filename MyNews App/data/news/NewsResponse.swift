@@ -28,7 +28,7 @@ struct NewsResponse : Decodable {
 }
 
 struct NewsData : Decodable {
-    let id : Int?
+    let id : String?
     let title : String?
     let description : String?
     let newsimage : String?
@@ -49,7 +49,7 @@ struct NewsData : Decodable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
         title = try values.decodeIfPresent(String.self, forKey: .title)
         description = try values.decodeIfPresent(String.self, forKey: .description)
         newsimage = try values.decodeIfPresent(String.self, forKey: .newsimage)

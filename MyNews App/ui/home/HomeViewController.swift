@@ -20,6 +20,11 @@ class HomeViewController : BaseviewController{
     override func viewDidAppear(_ animated: Bool) {
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = UIColor.red
+    }
     func initView() {
 //        buttonLogin.layer.cornerRadius = 5
 //        buttonLogin.layer.borderWidth = 1
