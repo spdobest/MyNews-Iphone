@@ -127,7 +127,10 @@ class NewsViewController : BaseviewController,UITableViewDataSource {
         
         cell.labelNewsTitle.text = self.newsList[indexPath.row].title
         cell.labelDesc.text = self.newsList[indexPath.row].description
-        downloadImage(self.newsList[indexPath.row].newsimage!, inView: cell.imageViewNews)
+    //    downloadImage(self.newsList[indexPath.row].newsimage!, inView: cell.imageViewNews)
+        
+        cell.imageViewNews.image = loadImage(self.newsList[indexPath.row].newsImage)
+        
         return cell
     }
     
@@ -179,13 +182,17 @@ extension NewsViewController : UITableViewDelegate {
     }
     
     
-    let url = URL(string: image.url)
+   
+    func loadImage(url:SAtring)->UiImage{ 
+     let url = URL(string: image.url)
 
 DispatchQueue.global().async {
     let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
     DispatchQueue.main.async {
         imageView.image = UIImage(data: data!)
+        return imageView
     }
+}
 }
     
     
