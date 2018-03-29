@@ -13,10 +13,6 @@ class NewsViewController : BaseviewController,UITableViewDataSource {
     
     @IBOutlet var myTable: UITableView!
     
-    let images = ["bear.jpeg","camel.jpeg","goat.jpeg","leopard.jpg","lion.jpg","panda.jpg","puppy.jpeg","rabit.jpeg","zebra.jpeg","ziraf.jpeg"]
-    var imageArray = [UIImage]()
-    
-    
      var articles:[Article] = [Article]()
      var newsList:[NewsData] = [NewsData]()
     
@@ -41,10 +37,10 @@ class NewsViewController : BaseviewController,UITableViewDataSource {
         Alamofire.request( UrlConstants.API_NEWS,method: .get, parameters: parameters)
             .responseJSON { response in
                 
-                print(response.request )  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
+            //    print(response.request )  // original URL request
+              //  print(response.response) // URL response
+            //    print(response.data)     // server data
+              //  print(response.result)   // result of response serialization
                 
                 
                 do {
@@ -127,9 +123,8 @@ class NewsViewController : BaseviewController,UITableViewDataSource {
         
         cell.labelTitle.text = self.newsList[indexPath.row].title
         cell.labelDesc.text = self.newsList[indexPath.row].description
-    //    downloadImage(self.newsList[indexPath.row].newsimage!, inView: cell.imageViewNews)
+        downloadImage(self.newsList[indexPath.row].newsimage!,inView: cell.imageViewNews)
         
-        cell.imageViewNews.image = loadImage(self.newsList[indexPath.row].newsImage)
         
         return cell
     }
@@ -137,18 +132,20 @@ class NewsViewController : BaseviewController,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name:"Main",bundle:nil)
         
-        let dvc = storyboard.instantiateViewController(withIdentifier: "DetailsArticle") as! DetailsArticleVC
+        let dvc = storyboard.instantiateViewController(withIdentifier: "newsDetails") as! NewsDetailsVc
         
+        dvc.getTitle = newsList[indexPath.row].title!
+       dvc.getDesc = newsList[indexPath.row].description!
+       dvc.getImageUrl = newsList[indexPath.row].newsimage!
+        dvc.getDate = newsList[indexPath.row].uploadedDate!
+        dvc.getLikeCount = newsList[indexPath.row].likecnt!
         
-     //   dvc.getImage = imageArray[indexPath.row%9]
-        dvc.getName = articles[indexPath.row].title
-        var url = articles[indexPath.row].url.absoluteString
-        dvc.getUrl = url
-        self.navigationController?.pushViewController(dvc, animated: true)
+         self.navigationController?.pushViewController(dvc, animated: true) 
     }
     
+    
+    
 }
-
 
 func downloadImage(_ uri : String, inView: UIImageView){
     
@@ -181,20 +178,6 @@ extension NewsViewController : UITableViewDelegate {
         return 100
     }
     
-    
-   
-    func loadImage(url:SAtring)->UiImage{ 
-     let url = URL(string: image.url)
-
-DispatchQueue.global().async {
-    let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-    DispatchQueue.main.async {
-        imageView.image = UIImage(data: data!)
-        return imageView
-    }
-}
-}
-    
-    
+ 
 }
 

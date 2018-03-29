@@ -9,22 +9,29 @@
 import Foundation
 import UIKit
 import Alamofire
-class RegisterViewController : BaseviewController, UIPickerViewDelegate, UIPickerViewDataSource{
+class RegisterViewController : BaseviewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate,UIPopoverControllerDelegate,UINavigationControllerDelegate{
     
+    var apputil:AppUtils = AppUtils()
+    
+    var picker:UIImagePickerController?=UIImagePickerController()
+    @IBOutlet var imageProfile: UIImageView!
     var pickerData: [String] = [String]()
     
+    
+    // ALL THE WIDGETS
+    @IBOutlet var onRegisterClick: UIButton!
     @IBOutlet var textFIeldName: UITextField!
     @IBOutlet var textFIeldEmail: UITextField!
     @IBOutlet var textFieldMobile: UITextField!
     @IBOutlet var textFieldPassword: UITextField!
-    @IBOutlet var buttonRegister: UIButton! 
-    
+    @IBOutlet var buttonRegister: UIButton!
     @IBOutlet var statePickerview: UIPickerView!
     
-    override func viewDidLoad() {
-        initView()
-        registerUser()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initView() 
+picker?.delegate=self
         // Input data into the Array:
         pickerData = ["Andhra Pradesh",
                       "Arunachal Pradesh","Assam", "Bihar", "Chhattisgarh", "Goa",
@@ -44,6 +51,26 @@ class RegisterViewController : BaseviewController, UIPickerViewDelegate, UIPicke
         buttonRegister.layer.borderColor = UIColor.black.cgColor
     }
     
+    /* CLICK LISTENER */
+    @IBAction func onRegisterClick(_ sender: Any) {
+        
+        if (!apputil.isInternetAvailable()) {
+            showAlert("Error",msg: "Check Internet Connection",isShowCancel: false)
+        }
+        else if ( textFIeldEmail.text!=="" || textFieldPassword.text=="" || textFieldMobile.text == "" || textFIeldName == "" ) {
+            showAlert("Error",msg: "Please Enter all the Fields",isShowCancel: false)
+        }
+        else if (textFieldPassword.text?.characters.count)!<6{
+            showAlert("Error",msg: "Password Length must be minimum 6",isShowCancel: false)
+        }
+        else{
+        registerUser()
+        }
+    }
+    @IBAction func onProfileCLick(_ sender: Any) {
+        showPhotoPickerDialog()
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -61,10 +88,9 @@ class RegisterViewController : BaseviewController, UIPickerViewDelegate, UIPicke
     }
     
     func registerUser()  {
+        let parameters: Parameters = ["name": textFIeldName.text,"email": textFIeldEmail.text,"phone": textFieldMobile.text,"pass": textFieldPassword.text,"state": "12","proof": "","token": "12321313"]
         
-        let parameters: Parameters = ["foo": "bar"]
-        
-        Alamofire.request( "https://httpbin.org/get",method: .get, parameters: parameters)
+        Alamofire.request( UrlConstants.API_REGISTER,method: .get, parameters: parameters)
             .responseJSON { response in
                 print(response.request)  // original URL request
                 print(response.response) // URL response
@@ -74,8 +100,94 @@ class RegisterViewController : BaseviewController, UIPickerViewDelegate, UIPicke
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
                 }
+                
+                
+                
+                do {
+                    if let JSON = response.result.value {
+                        print("JSON: \(JSON)")
+                        let registerResponse =  try JSONDecoder().decode(RegisterResponse.self, from: response.data!)
+                        print("JSON: \(registerResponse.data![0])")
+                        
+                        var loginData = registerResponse.data![0]
+                        
+                        
+                        if loginData.status == "1" {
+                            self.performSegue(withIdentifier: "registerToHome", sender: self)
+                        }
+                        
+                    }
+                    
+                }
+                catch let error as NSError {
+                    print(error.localizedDescription)
+                    
+                    showAlert("Error", msg: "Unable to register", isShowCancel:false)
+                    
+                }
         }
     }
     
+    func showPhotoPickerDialog(){
+        let refreshAlert = UIAlertController(title: "Image Picker", message: "Please Choose Image Using", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Photo Gallery", style: .default, handler: { (action: UIAlertAction!) in
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Camera", style: .cancel, handler: { (action: UIAlertAction!) in
+            
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    func openGallary()
+    {
+        picker!.allowsEditing = false
+        picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        present(picker!, animated: true, completion: nil)
+    }
+    
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
+            picker!.allowsEditing = false
+            picker!.sourceType = UIImagePickerControllerSourceType.camera
+            picker!.cameraCaptureMode = .photo
+            present(picker!, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "Camera Not Found", message: "This device has no Camera", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        imageProfile.contentMode = .scaleAspectFit //3
+        imageProfile.image = chosenImage //4
+        dismiss(animated:true, completion: nil) //5
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "registerToHome"?:
+            let welcomeVc = segue.destination as! HomeViewController
+        // welcomeVc.myValue = "Sibaprasad"
+        case "asd"?:
+            print("adasdas")
+        default :
+            print("default")
+        }
+    }
 }
 

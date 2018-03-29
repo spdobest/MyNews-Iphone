@@ -41,7 +41,34 @@ class AppUtils  {
         return (isReachable && !needsConnection)
     }
     
+    static func setButtonBorder(button:UIButton,btnColor:CGColor,boarderColor:CGColor,cornerRadious:Int = 5,boarderWidth:Int = 0){
+        button.layer.cornerRadius = CGFloat(cornerRadious)
+        button.layer.borderWidth = CGFloat(boarderWidth)
+        button.layer.borderColor = boarderColor
+        button.layer.backgroundColor = boarderColor
+    }
     
     
+    static func loadImage(imageView:UIImageView,url:String){
+        let url = URL(string: url)
+        
+        let task = URLSession.shared.dataTask(with: url!) {responseData,response,error in
+            if error == nil{
+                if let data = responseData {
+                    
+                    DispatchQueue.main.async {
+                        imageView.image = UIImage(data: data)
+                    }
+                    
+                }else {
+                    print("no data")
+                }
+            }else{
+                print(error)
+            }
+        }
+        
+        task.resume()
+    }
     
 }

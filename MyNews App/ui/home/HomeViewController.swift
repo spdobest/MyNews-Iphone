@@ -14,6 +14,17 @@ class HomeViewController : BaseviewController{
     var apputil = AppUtils()
     var newsList:[NewsData] = [NewsData]()
     override func viewDidLoad() {
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        // Make Nav Bar Translucent and Set title font/color
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20, weight: .semibold)]
+        
+        
         initView()
     }
     
@@ -26,10 +37,7 @@ class HomeViewController : BaseviewController{
         self.navigationController?.navigationBar.tintColor = UIColor.red
     }
     func initView() {
-//        buttonLogin.layer.cornerRadius = 5
-//        buttonLogin.layer.borderWidth = 1
-//        buttonLogin.layer.borderColor = UIColor.black.cgColor
-        getNewsList()
+       // getNewsList()
     }
     
     func getNewsList() {

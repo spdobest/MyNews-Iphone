@@ -27,16 +27,9 @@ class LandingViewController: UIViewController {
 
     
     func initView() {
-        loginButton.layer.cornerRadius = 5
-        loginButton.layer.borderWidth = 1
-        loginButton.layer.borderColor = UIColor.black.cgColor
+        AppUtils.setButtonBorder(button: loginButton,btnColor: UIColor.blue.cgColor,boarderColor: UIColor.blue.cgColor,cornerRadious: 5,boarderWidth: 0)
         
-        
-        registerButton.layer.cornerRadius = 5
-        registerButton.layer.borderWidth = 1
-        registerButton.layer.borderColor = UIColor.black.cgColor
-        
-         
+        AppUtils.setButtonBorder(button: registerButton,btnColor: UIColor.blue.cgColor,boarderColor: UIColor.blue.cgColor,cornerRadious: 5,boarderWidth: 0)
     }
 
 }
