@@ -57,7 +57,7 @@ picker?.delegate=self
         if (!apputil.isInternetAvailable()) {
             showAlert("Error",msg: "Check Internet Connection",isShowCancel: false)
         }
-        else if ( textFIeldEmail.text!=="" || textFieldPassword.text=="" || textFieldMobile.text == "" || textFIeldName == "" ) {
+        else if ( textFIeldEmail.text!=="" || textFieldPassword.text!=="" || textFieldMobile.text! == "" || textFIeldName.text == "" ) {
             showAlert("Error",msg: "Please Enter all the Fields",isShowCancel: false)
         }
         else if (textFieldPassword.text?.characters.count)!<6{
@@ -122,7 +122,7 @@ picker?.delegate=self
                 catch let error as NSError {
                     print(error.localizedDescription)
                     
-                    showAlert("Error", msg: "Unable to register", isShowCancel:false)
+                    self.showAlert("Error", msg: "Unable to register", isShowCancel:false)
                     
                 }
         }
