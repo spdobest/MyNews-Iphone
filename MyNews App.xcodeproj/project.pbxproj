@@ -24,6 +24,11 @@
 		35083C8A2065E92E00E0CD4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35083C892065E92E00E0CD4E /* LoginViewController.swift */; };
 		35083C8C2065EA7100E0CD4E /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 35083C8B2065EA7100E0CD4E /* login_bg.png */; };
 		35083C8E2065F21900E0CD4E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35083C8D2065F21900E0CD4E /* RegisterViewController.swift */; };
+		353A42DA2071003300F7768F /* HallabolTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353A42D92071003300F7768F /* HallabolTableCell.swift */; };
+		353A42DC2071026700F7768F /* HallabolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353A42DB2071026700F7768F /* HallabolViewController.swift */; };
+		353A42DF20710B9400F7768F /* HallabolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353A42DE20710B9400F7768F /* HallabolResponse.swift */; };
+		353A42E4207119CA00F7768F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353A42E3207119CA00F7768F /* SettingViewController.swift */; };
+		35464AC5206E4DF4008B927B /* ExamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35464AC4206E4DF4008B927B /* ExamData.swift */; };
 		356636332066DE4B004C9480 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356636322066DE4B004C9480 /* LoginModel.swift */; };
 		356636362066E3BF004C9480 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356636342066E3BF004C9480 /* LoginResponse.swift */; };
 		356636372066E3BF004C9480 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356636352066E3BF004C9480 /* Data.swift */; };
@@ -34,7 +39,9 @@
 		356636422066FCF9004C9480 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566363E2066FCF8004C9480 /* Company.swift */; };
 		356636462067017B004C9480 /* LoginBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356636442067017B004C9480 /* LoginBase.swift */; };
 		356636472067017B004C9480 /* LoginChildData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356636452067017B004C9480 /* LoginChildData.swift */; };
+		356DA45A206CD68D008EAD83 /* ExamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356DA459206CD68D008EAD83 /* ExamViewController.swift */; };
 		356E26212067FF7C00DD17E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E26202067FF7C00DD17E6 /* HomeViewController.swift */; };
+		35BAEC70206DD0E400F0E375 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35BAEC6E206DD0E400F0E375 /* Database.xcdatamodeld */; };
 		35D6E3E3206C09000057E5BC /* TableViewCellNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6E3E2206C09000057E5BC /* TableViewCellNews.swift */; };
 		35D6E3E5206C3A770057E5BC /* NewsDetailsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6E3E4206C3A770057E5BC /* NewsDetailsVc.swift */; };
 		35D99C31206C694C0041B26D /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D99C30206C694C0041B26D /* RegisterResponse.swift */; };
@@ -67,6 +74,11 @@
 		35083C892065E92E00E0CD4E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		35083C8B2065EA7100E0CD4E /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg.png; sourceTree = "<group>"; };
 		35083C8D2065F21900E0CD4E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		353A42D92071003300F7768F /* HallabolTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallabolTableCell.swift; sourceTree = "<group>"; };
+		353A42DB2071026700F7768F /* HallabolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallabolViewController.swift; sourceTree = "<group>"; };
+		353A42DE20710B9400F7768F /* HallabolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallabolResponse.swift; sourceTree = "<group>"; };
+		353A42E3207119CA00F7768F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		35464AC4206E4DF4008B927B /* ExamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamData.swift; sourceTree = "<group>"; };
 		356636322066DE4B004C9480 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		356636342066E3BF004C9480 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		356636352066E3BF004C9480 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -77,7 +89,9 @@
 		3566363E2066FCF8004C9480 /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		356636442067017B004C9480 /* LoginBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginBase.swift; sourceTree = "<group>"; };
 		356636452067017B004C9480 /* LoginChildData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginChildData.swift; sourceTree = "<group>"; };
+		356DA459206CD68D008EAD83 /* ExamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamViewController.swift; sourceTree = "<group>"; };
 		356E26202067FF7C00DD17E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		35BAEC6F206DD0E400F0E375 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		35D6E3E2206C09000057E5BC /* TableViewCellNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellNews.swift; sourceTree = "<group>"; };
 		35D6E3E4206C3A770057E5BC /* NewsDetailsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsVc.swift; sourceTree = "<group>"; };
 		35D99C30206C694C0041B26D /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
@@ -135,6 +149,7 @@
 				35083C65206567EE00E0CD4E /* Assets.xcassets */,
 				35083C67206567EE00E0CD4E /* LaunchScreen.storyboard */,
 				35083C6A206567EE00E0CD4E /* Info.plist */,
+				35BAEC6E206DD0E400F0E375 /* Database.xcdatamodeld */,
 			);
 			path = "MyNews App";
 			sourceTree = "<group>";
@@ -182,6 +197,9 @@
 		35083C882065E91400E0CD4E /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				353A42E2207119B700F7768F /* setting */,
+				353A42D82071001D00F7768F /* hallabol */,
+				356DA458206CD66F008EAD83 /* exam */,
 				356E261F2067FF6700DD17E6 /* home */,
 				35083C892065E92E00E0CD4E /* LoginViewController.swift */,
 				35083C8D2065F21900E0CD4E /* RegisterViewController.swift */,
@@ -189,9 +207,44 @@
 			path = ui;
 			sourceTree = "<group>";
 		};
+		353A42D82071001D00F7768F /* hallabol */ = {
+			isa = PBXGroup;
+			children = (
+				353A42D92071003300F7768F /* HallabolTableCell.swift */,
+				353A42DB2071026700F7768F /* HallabolViewController.swift */,
+			);
+			path = hallabol;
+			sourceTree = "<group>";
+		};
+		353A42DD20710B8400F7768F /* hallabol */ = {
+			isa = PBXGroup;
+			children = (
+				353A42DE20710B9400F7768F /* HallabolResponse.swift */,
+			);
+			path = hallabol;
+			sourceTree = "<group>";
+		};
+		353A42E2207119B700F7768F /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				353A42E3207119CA00F7768F /* SettingViewController.swift */,
+			);
+			path = setting;
+			sourceTree = "<group>";
+		};
+		35464AC2206E4DC9008B927B /* exam */ = {
+			isa = PBXGroup;
+			children = (
+				35464AC4206E4DF4008B927B /* ExamData.swift */,
+			);
+			path = exam;
+			sourceTree = "<group>";
+		};
 		356636312066DE10004C9480 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				353A42DD20710B8400F7768F /* hallabol */,
+				35464AC2206E4DC9008B927B /* exam */,
 				35D99C2F206C69300041B26D /* register */,
 				35F7B384206898A00094234A /* article */,
 				35F7B37F206894260094234A /* news */,
@@ -222,6 +275,14 @@
 				356636442067017B004C9480 /* LoginBase.swift */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		356DA458206CD66F008EAD83 /* exam */ = {
+			isa = PBXGroup;
+			children = (
+				356DA459206CD68D008EAD83 /* ExamViewController.swift */,
+			);
+			path = exam;
 			sourceTree = "<group>";
 		};
 		356E261F2067FF6700DD17E6 /* home */ = {
@@ -414,8 +475,10 @@
 			files = (
 				35083C8A2065E92E00E0CD4E /* LoginViewController.swift in Sources */,
 				35F7B39E20689A170094234A /* NewsViewController.swift in Sources */,
+				35BAEC70206DD0E400F0E375 /* Database.xcdatamodeld in Sources */,
 				35083C8E2065F21900E0CD4E /* RegisterViewController.swift in Sources */,
 				35083C7A2065C41A00E0CD4E /* ObjectUtils.swift in Sources */,
+				353A42DC2071026700F7768F /* HallabolViewController.swift in Sources */,
 				356636332066DE4B004C9480 /* LoginModel.swift in Sources */,
 				35083C782065731F00E0CD4E /* AppUtils.swift in Sources */,
 				35D99C33206C695F0041B26D /* RegisterData.swift in Sources */,
@@ -423,14 +486,17 @@
 				356636362066E3BF004C9480 /* LoginResponse.swift in Sources */,
 				35083C722065683400E0CD4E /* BaseviewController.swift in Sources */,
 				35083C752065689D00E0CD4E /* UrlConstants.swift in Sources */,
+				353A42DA2071003300F7768F /* HallabolTableCell.swift in Sources */,
 				35F7B386206899090094234A /* Blog.swift in Sources */,
 				356636462067017B004C9480 /* LoginBase.swift in Sources */,
+				35464AC5206E4DF4008B927B /* ExamData.swift in Sources */,
 				356636372066E3BF004C9480 /* Data.swift in Sources */,
 				3566363F2066FCF9004C9480 /* Address.swift in Sources */,
 				356636472067017B004C9480 /* LoginChildData.swift in Sources */,
 				35083C61206567EE00E0CD4E /* LandingViewController.swift in Sources */,
 				35D6E3E3206C09000057E5BC /* TableViewCellNews.swift in Sources */,
 				356636422066FCF9004C9480 /* Company.swift in Sources */,
+				353A42E4207119CA00F7768F /* SettingViewController.swift in Sources */,
 				35F7B382206894310094234A /* NewsResponse.swift in Sources */,
 				35D6E3E5206C3A770057E5BC /* NewsDetailsVc.swift in Sources */,
 				35083C5F206567EE00E0CD4E /* AppDelegate.swift in Sources */,
@@ -441,6 +507,8 @@
 				35D99C31206C694C0041B26D /* RegisterResponse.swift in Sources */,
 				35083C7E2065D8A800E0CD4E /* Constants.swift in Sources */,
 				356636402066FCF9004C9480 /* Geo.swift in Sources */,
+				353A42DF20710B9400F7768F /* HallabolResponse.swift in Sources */,
+				356DA45A206CD68D008EAD83 /* ExamViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +695,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		35BAEC6E206DD0E400F0E375 /* Database.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				35BAEC6F206DD0E400F0E375 /* Database.xcdatamodel */,
+			);
+			currentVersion = 35BAEC6F206DD0E400F0E375 /* Database.xcdatamodel */;
+			path = Database.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 35083C53206567EE00E0CD4E /* Project object */;
 }

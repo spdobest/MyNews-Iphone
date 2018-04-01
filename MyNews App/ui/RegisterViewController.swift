@@ -53,6 +53,7 @@ picker?.delegate=self
     
     /* CLICK LISTENER */
     @IBAction func onRegisterClick(_ sender: Any) {
+         self.performSegue(withIdentifier: "registerToHome", sender: self)
         
         if (!apputil.isInternetAvailable()) {
             showAlert("Error",msg: "Check Internet Connection",isShowCancel: false)
@@ -64,7 +65,7 @@ picker?.delegate=self
             showAlert("Error",msg: "Password Length must be minimum 6",isShowCancel: false)
         }
         else{
-        registerUser()
+       // registerUser()
         }
     }
     @IBAction func onProfileCLick(_ sender: Any) {
