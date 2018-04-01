@@ -9,3 +9,7 @@
 * NEws (List of news from server)
 * Hallabol - Current Afair
 * Settings -(Notification ON/OFF , theme)
+
+**This App Video Link
+https://www.youtube.com/watch?v=KnY2yEOcdVk
+
